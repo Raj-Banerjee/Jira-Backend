@@ -5,15 +5,15 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DATABASE_URL = os.getenv("DATABASE_URL")
-
-
 def get_connection():
     return psycopg2.connect(
-        DATABASE_URL,
+        host=os.getenv("DB_HOST"),
+        port=os.getenv("DB_PORT"),
+        database=os.getenv("DB_NAME"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
         cursor_factory=RealDictCursor
     )
-
 
 # import psycopg2
 # from psycopg2 import pool

@@ -6,6 +6,9 @@ from psycopg2 import errors
 
 
 def register_user(user_data):
+
+    print(type(user_data.password))
+    print(user_data.password)
     conn = get_connection()
     cursor = conn.cursor()
 
@@ -20,7 +23,7 @@ def register_user(user_data):
 
         cursor.execute(
             query,
-            (user_data.name, user_data.email, hashed_pwd)
+            (user_data.name, user_data.email, user_data.password)
         )
 
         new_user = cursor.fetchone()
